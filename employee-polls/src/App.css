@@ -1,0 +1,333 @@
+html,
+body,
+.root {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+}
+
+body,
+.app {
+  background: white;
+}
+
+/* login page */
+.login-container {
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.login-header {
+  color: #006400;
+  text-align: center;
+  font-size: 200%;
+}
+
+.login-field-group {
+  border: .5px solid #fff;
+  box-shadow: 0px 0px 10px #000;
+  box-sizing: border-box;
+  padding-top: 15px;
+  padding-bottom: 10%;
+  margin: 5% auto;
+}
+
+.login-field-group label {
+  text-align: left;
+  margin-left: 40px;
+  color: #006400;
+  font-weight: 600;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  max-width: 400px;
+  width: 80%;
+  line-height: 3em;
+  font-family: 'Ubuntu', sans-serif;
+  margin: 1em 2em;
+  border-radius: 5px;
+  border: 2px solid #f2f2f2;
+  outline: none;
+  padding-left: 10px;
+}
+
+.login-field-group input[type="submit"] {
+  height: 30px;
+  width: 100px;
+  color: aliceblue;
+  background: #006400;
+  border: 1px solid #f2f2f2;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.login-submit-btn {
+  text-align: center;
+}
+
+.alert-error {
+  background-color: #fff;
+  color: #333;
+  margin: 10px 40px 30px 30px;
+  padding: 5px;
+  border: 2px solid #c00;
+}
+
+/* dashboard page */
+.dashboard-header {
+  border: 1px solid #DEE1E6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  height: 50px;
+}
+
+.dashboard-header ul {
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.dashboard-header ul li {
+  list-style: none;
+  margin-right: 15px;
+  padding: 7px 10px;
+}
+
+.dashboard-header ul li a {
+  text-decoration: none;
+  color: #222222;
+  font-weight: 700;
+  font-size: 16px;
+  -webkit-transition: 0.8s ease-in;
+  transition: 0.8s ease-in;
+}
+
+.dashboard-header ul li a:hover {
+  color: #006400;
+}
+
+.header-right a {
+  text-decoration: none;
+  padding: 7px 10px;
+  margin-left: 15px;
+}
+
+header-right {
+  display: flex;
+}
+.dashboard-body {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.dashboard-question-title {
+  border: .5px solid #006400;
+  width: 870px;
+  margin: 0;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.dashboard-question-body {
+  border: .5px solid #006400;
+  width: 860px;
+  margin: 0;
+  border-top: none;
+  height: auto;
+  display: flex;
+  justify-content: space-evenly;
+  padding-left: 10px;
+}
+
+.dashboard-question-body ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+
+.question-info,
+.question-submit {
+  border: .5px solid #006400;
+  width: 200px;
+  height: auto;
+  margin: 0px 5px 0px 5px
+}
+
+.question-info {
+  border-bottom: none;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.question-submit {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.question input[type="text"] {
+  width: 80%;
+  border: none;
+  text-align: center;
+}
+
+
+.question-line {
+  border-top: .3px solid #006400;
+  margin-top: 5px
+}
+
+/* Poll page */
+.poll-container {
+  display: grid;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 30px
+}
+
+.poll-user {
+  display: grid;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.poll-user input[type="text"] {
+  border: none;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 600;
+  width: 250px;
+  padding-bottom: 10px;
+}
+
+.poll-user label {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  width: 250px;
+}
+
+.poll-option {
+  display: flex;
+}
+
+.poll-option table {
+  width: 500px;
+  padding: 30px 20px 0 0;
+}
+
+
+.poll-answer {
+  width: 100%;
+  border: 1px solid #006400;
+  height: 50px;
+  font-size: medium;
+  display: grid;
+  position: relative;
+}
+
+.poll-answer input[type="text"] {
+  border: none;
+}
+
+.poll-answer span {
+  position: absolute;
+  right: 2px;
+  border: 1px solid #FF8C00;
+  border-radius: 5px;
+  background-color: #FF8C00;
+  font-size: 14px;
+  margin-top: 2px;
+  padding: 0 5px 0 5px;
+}
+
+.poll-option table tr th input[type="submit"] {
+  width: 100%;
+  background-color: #006400;
+  color: #DEE1E6;
+}
+
+/* Poll Creation Page */
+.pollcreaetion-container {
+  max-width: 700px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.pollcreaetion-container h1 {
+  margin-left: 40px;
+}
+
+.pollcreaetion-container h3 {
+  color: #808080;
+  margin-left: 40px;
+}
+
+.creation-group-field {
+  padding-top: 15px;
+  padding-bottom: 10%;
+  margin: 5% auto;
+}
+
+.creation-group-field label {
+  margin-left: 40px;
+  font-weight: 600;
+}
+
+.creation-group-field input[type="text"] {
+  max-width: 600px;
+  width: 80%;
+  line-height: 3em;
+  margin: 15px 30px;
+  border-radius: 5px;
+  border: 2px solid #f2f2f2;
+  outline: none;
+  padding-left: 10px;
+}
+
+.creation-group-field input[type="submit"] {
+  height: 30px;
+  width: 100px;
+  cursor: pointer;
+  margin-left: 40px;
+}
+
+/* Leaderboard */
+.leaderboard-container {
+  padding: 30px;
+}
+
+.leaderboard-container table {
+  border-collapse: collapse;
+}
+
+.leaderboard-container th:first-child,
+.leaderboard-container td:first-child {
+  border: 1px solid #000000;
+  width: 400px;
+}
+
+.leaderboard-container td:first-child {
+  display: flex;
+  padding: 5px;
+}
+
+.leaderboard-container th,
+.leaderboard-container td {
+  border: 1px solid #000000;
+  width: 150px;
+}
