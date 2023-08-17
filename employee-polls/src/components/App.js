@@ -11,6 +11,7 @@ import PollCreation from "./poll-creation";
 import LeaderBoard from "./leaderboard";
 import NavigationBar from "./navigation-bar";
 import PrivateRoute from "./private-page";
+import PageNotFound from "./404page";
 
 const App = (props) => {
   useEffect(() => {
@@ -54,6 +55,14 @@ const App = (props) => {
               element={
                 <PrivateRoute>
                   <Poll />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/404"
+              element={
+                <PrivateRoute>
+                  <PageNotFound />
                 </PrivateRoute>
               }
             />

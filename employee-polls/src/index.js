@@ -7,6 +7,7 @@ import {createStore} from "redux";
 import {Provider} from "react-redux";
 import recuder from "./reducers";
 import middleware from "./middleware";
+import 'bootstrap/dist/css/bootstrap.css';
 
 const store = createStore(recuder, middleware);
 

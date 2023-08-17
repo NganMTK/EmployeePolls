@@ -33,7 +33,6 @@ const PollCreation = ({ dispatch, id }) => {
         <label>First Option</label>
         <input
           type="text"
-          placeholder="Option One"
           data-testid="optionOne-input"
           value={optionOne}
           onChange={(e) => onChangeOptionOne(e.target.value)}
@@ -43,7 +42,6 @@ const PollCreation = ({ dispatch, id }) => {
         <label>Second Option</label>
         <input
           type="text"
-          placeholder="Option Second"
           data-testid="optionTwo-input"
           value={optionTwo}
           onChange={(e) => onChangeOptionTwo(e.target.value)}

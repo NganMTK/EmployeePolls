@@ -18,10 +18,9 @@ const LogIn = ({ dispatch, loggedIn, users }) => {
     );
 
     if (user && user.length > 0) {
-      dispatch(handleLogin(userName, password));
-
       setUserName("");
       setPassword("");
+      dispatch(handleLogin(userName, password));
     } else {
       setAlert(true);
     }

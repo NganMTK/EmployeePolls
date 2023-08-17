@@ -1,7 +1,12 @@
 import { connect } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  Navigate,
+} from "react-router-dom";
+import { useState } from "react";
 import { handAddQuestionAnswer } from "../actions/questions";
-import users from "../reducers/users";
 
 const withRouter = (Component) => {
   const ComponentWithRouterProp = (props) => {
@@ -15,8 +20,13 @@ const withRouter = (Component) => {
 };
 
 const Poll = (props) => {
+  const [answered, setAnswered] = useState(props.answered);
+  const [vote1, setVote1] = useState(props.isVotedOp1);
+  const [vote2, setVote2] = useState(props.isVotedOp2);
+
   const {
     id,
+    question,
     author,
     avatar,
     optionOneText,
@@ -29,16 +39,32 @@ const Poll = (props) => {
     isVotedOp2,
     dispatch,
   } = props;
-  const navigate = useNavigate();
 
+  if (!question) {
+    return <Navigate to={"/404"} />;
+  }
   const handleOptionOne = (e) => {
-    dispatch(handAddQuestionAnswer(id, "optionOne"));
-    navigate("/dashboard");
+    if (vote1) {
+      setAnswered(false);
+      setVote1(false);
+    } else {
+      setAnswered(true);
+      setVote1(true);
+      setVote2(false);
+      dispatch(handAddQuestionAnswer(id, "optionOne"));
+    }
   };
 
   const handleOptionTwo = (e) => {
-    dispatch(handAddQuestionAnswer(id, "optionTwo"));
-    navigate("/dashboard");
+    if (vote2) {
+      setAnswered(false);
+      setVote2(false);
+    } else {
+      setAnswered(true);
+      setVote2(true);
+      setVote1(false);
+      dispatch(handAddQuestionAnswer(id, "optionTwo"));
+    }
   };
 
   return (
@@ -65,11 +91,13 @@ const Poll = (props) => {
                   data-testid="option-one"
                   value={optionOneText}
                 ></input>
-                {isVotedOp1 && <span>your voted</span>}
-                <input
-                  type="text"
-                  value={`Total: ${optionOneVotes} vote(s) - ${optionOnePercentage}%`}
-                ></input>
+                {answered && vote1 && <span>your voted</span>}
+                {answered && (
+                  <input
+                    type="text"
+                    value={`Total: ${optionOneVotes} vote(s) - ${optionOnePercentage}%`}
+                  ></input>
+                )}
               </div>
             </th>
           </tr>
@@ -93,11 +121,13 @@ const Poll = (props) => {
                   data-testid="option-two"
                   value={optionTwoText}
                 ></input>
-                {isVotedOp2 && <span>your voted</span>}
-                <input
-                  type="text"
-                  value={`Total: ${optionTwoVotes} vote(s) - ${optionTwoPercentage}%`}
-                ></input>
+                {answered && vote2 && <span>your voted</span>}
+                {answered && (
+                  <input
+                    type="text"
+                    value={`Total: ${optionTwoVotes} vote(s) - ${optionTwoPercentage}%`}
+                  ></input>
+                )}
               </div>
             </th>
           </tr>
@@ -117,31 +147,40 @@ const Poll = (props) => {
 };
 
 const mapStateToProps = ({ authedUser, users, questions }, props) => {
-  const { id } = props.router.params;
-  const question = questions[id];
-  const op1Votes = question.optionOne.votes.length;
-  const op2Votes = question.optionTwo.votes.length;
-  const isVotedOp1 = Object.values(question.optionOne.votes).includes(
-    authedUser
-  );
-  const isVotedOp2 = Object.values(question.optionTwo.votes).includes(
-    authedUser
-  );
+  try {
+    const { id } = props.router.params;
+    const question = questions[id];
+    const op1Votes = question.optionOne.votes.length;
+    const op2Votes = question.optionTwo.votes.length;
+    const isVotedOp1 = Object.values(question.optionOne.votes).includes(
+      authedUser
+    );
+    const isVotedOp2 = Object.values(question.optionTwo.votes).includes(
+      authedUser
+    );
+    const answered =
+      question.optionOne.votes.includes(authedUser) ||
+      question.optionTwo.votes.includes(authedUser);
 
-  return {
-    id,
-    author: question.author,
-    avatar: users[question.author].avatarURL,
-    optionOneText: question.optionOne.text,
-    optionOneVotes: op1Votes,
-    optionOnePercentage: (op1Votes / Object.keys(users).length) * 100,
-    isVotedOp1: isVotedOp1,
-    optionTwoText: question.optionTwo.text,
-    optionTwoVotes: op2Votes,
-    optionTwoPercentage: (op2Votes / Object.keys(users).length) * 100,
-    isVotedOp2: isVotedOp2,
-    dispatch: props.dispatch,
-  };
+    return {
+      id,
+      question,
+      answered,
+      author: question.author,
+      avatar: users[question.author] ? users[question.author].avatarURL : "",
+      optionOneText: question.optionOne.text,
+      optionOneVotes: op1Votes,
+      optionOnePercentage: (op1Votes / Object.keys(users).length) * 100,
+      isVotedOp1: isVotedOp1,
+      optionTwoText: question.optionTwo.text,
+      optionTwoVotes: op2Votes,
+      optionTwoPercentage: (op2Votes / Object.keys(users).length) * 100,
+      isVotedOp2: isVotedOp2,
+      dispatch: props.dispatch,
+    };
+  } catch (e) {
+    <Navigate to={"/404"} />;
+  }
 };
 
 export default withRouter(connect(mapStateToProps)(Poll));

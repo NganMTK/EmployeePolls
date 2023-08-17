@@ -1,16 +1,14 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import { handleLogout } from "../actions/authedUser";
 
 const NavigationBar = ({ dispatch, authedUser, avatar }) => {
   const onLogout = () => {
     dispatch(handleLogout());
-    return <Navigate to="/" />;
   };
 
   return (
     <header className="dashboard-header">
-      <nav className="nav">
         <ul>
           <li>
             <Link to="/dashboard">Home</Link>
@@ -22,7 +20,6 @@ const NavigationBar = ({ dispatch, authedUser, avatar }) => {
             <Link to="/add">New</Link>
           </li>
         </ul>
-      </nav>
       <div className="header-right">
           <div
             style={{
@@ -32,7 +29,7 @@ const NavigationBar = ({ dispatch, authedUser, avatar }) => {
             }}
           ></div>
           <span style={{paddingTop:"7 px"}}>{authedUser}</span>
-        <Link to="/login" onClick={onLogout}>
+        <Link to="/" onClick={onLogout}>
           Logout
         </Link>
       </div>
