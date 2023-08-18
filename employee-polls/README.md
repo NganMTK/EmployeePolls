@@ -39,3 +39,11 @@ There are two type of the data:
 	authedUser: user is login 
 	qid: question id,
 	answer: the answer has voted
+	
+## Project setup
+1. Clone this repository.
+2. Install the dependencies: `npm install`
+3. Start the app: `npm start`
+
+Run test the ap : `npm test`
+	
